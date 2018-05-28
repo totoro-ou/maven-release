@@ -25,7 +25,7 @@
     <groupId>org.apache.maven</groupId>
     <artifactId>maven-parent</artifactId>
     <version>27</version>
-    <relativePath>../pom/maven/pom.xml</relativePath>
+    <!--<relativePath>../pom/maven/pom.xml</relativePath>-->
   </parent>
 
   <groupId>org.apache.maven.release</groupId>
@@ -42,6 +42,7 @@
     <module>maven-release-plugin</module>
     <module>maven-release-policies/maven-release-oddeven-policy</module>
     <module>maven-release-policies/maven-release-semver-policy</module>
+    <module>maven-release-policies/maven-release-zk-policy</module>
   </modules>
 
   <scm>
