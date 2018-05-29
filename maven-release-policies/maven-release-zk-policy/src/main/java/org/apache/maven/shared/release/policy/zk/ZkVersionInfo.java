@@ -304,10 +304,12 @@ public class ZkVersionInfo implements VersionInfo {
 
         String baseVersion = getReleaseVersionString("");
 
-        if ( baseVersion.length() > 0 )
-        {
-            baseVersion += "-";
-        }
+        baseVersion = StringUtils.replaceOnce(baseVersion, mailstone, "-");
+
+//        if ( baseVersion.length() > 0 )
+//        {
+//            baseVersion += "-";
+//        }
 
         return baseVersion + Artifact.SNAPSHOT_VERSION;
     }
@@ -321,6 +323,10 @@ public class ZkVersionInfo implements VersionInfo {
         if ( m.matches() )
         {
             baseVersion = m.group( 1 );
+        }
+        else if ( StringUtils.right( baseVersion, 9 + mailstone.length() ).equalsIgnoreCase( mailstone + "-" + Artifact.SNAPSHOT_VERSION ) )
+        {
+            baseVersion = baseVersion.substring( 0, baseVersion.length() - mailstone.length() - Artifact.SNAPSHOT_VERSION.length() - 1 );
         }
         // MRELEASE-623 SNAPSHOT is case-insensitive
         else if ( StringUtils.right( baseVersion, 9 ).equalsIgnoreCase( "-" + Artifact.SNAPSHOT_VERSION ) )
