@@ -304,12 +304,11 @@ public class ZkVersionInfo implements VersionInfo {
 
         String baseVersion = getReleaseVersionString("");
 
-        baseVersion = StringUtils.replaceOnce(baseVersion, mailstone, "-");
-
-//        if ( baseVersion.length() > 0 )
-//        {
-//            baseVersion += "-";
-//        }
+        if (StringUtils.contains(baseVersion, mailstone)) {
+            baseVersion = StringUtils.replaceOnce(baseVersion, mailstone, "-");
+        } else if (baseVersion.length() > 0) {
+            baseVersion += "-";
+        }
 
         return baseVersion + Artifact.SNAPSHOT_VERSION;
     }
